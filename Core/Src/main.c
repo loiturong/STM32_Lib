@@ -85,7 +85,23 @@ int main(void)
 
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
+    // Enable Clocks
+    RCC->APB1ENR |= 1 << 0;    // Enable TIM2 clock
+    RCC->APB2ENR |= 1 << 2;    // Enable GPIOA clock
 
+    // Configure PA0 as Alternate Function Push-Pull
+    GPIOA->CRL &= ~(0xF << 0);      // Clear PA0 bits (first 4 bits of CRL)
+    GPIOA->CRL |= (0b1001 << 0);    // Set PA0 to Alternate Function Push-Pull, 2 MHz
+
+    // Configure TIM2
+    TIM2->PSC = 72 - 1;           // Prescaler = 72 (Timer clock = 1 MHz)
+    TIM2->ARR = 1000 - 1;         // Auto-reload value (1 kHz PWM frequency)
+    TIM2->CCR1 = 500;             // Set duty cycle (50% = CCR1 / ARR)
+    TIM2->CCMR1 |= (6U << 4);     // PWM Mode 1 on Channel 1
+    TIM2->CCER |= 1 << 0;  // Enable TIM2 Channel 1 output
+    TIM2->CR1 |= (1 << 0) | (1 << 7);     // Enable the Timer
+    TIM2->DIER |= (1 << 0) | (1 << 9);
+    HAL_TIM_PWM_MspInit()
   /* USER CODE END 2 */
 
   /* Infinite loop */

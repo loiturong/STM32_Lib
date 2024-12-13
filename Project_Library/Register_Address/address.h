@@ -1,43 +1,131 @@
 //
 // Created by loitr on 12/10/2024.
 //
-
+/**
+  ******************************************************************************
+  * @file           : address.h
+  * @brief          : relative address of register,
+  *                   which is used of setup in library.
+  ******************************************************************************
+  */
 #ifndef VAL_H
 #define VAL_H
 
-
-/*  Relative position of APB1ENR register  */
-#define TIM2_ENABLE 0x01        // Bit 0 of the APB1ENR register
-
-
-/*  Relative position of APB2ENR register  */
-#define GPIOA_ENABLE 0x4       // (1<<2)
-#define GPIOB_ENABLE 0x8       // (1<<3)
-#define GPIOC_ENABLE 0x10      // (1<<4)
-#define GPIOD_ENABLE 0x20      // (1<<5)
-#define GPIOE_ENABLE 0x40      // (1<<6)
-// #define GPIOF_ENABLE 0x80   // (1<<7)
-// #define GPIOG_ENABLE 0x100  // (1<<8)
-#define TIM1_ENABLE 0x400      // (1<<11)
+/******************************************************************************/
+/*                                                                            */
+/*                              APB peripheral bus                            */
+/*                                                                            */
+/******************************************************************************/
 
 
+/******************************************************************************/
+/*                                                                            */
+/*                                GPIO register                               */
+/*                                                                            */
+/******************************************************************************/
 
-/*  Configuration and Mode in CRL and CRH register  */
+/**************  Bit relative configuration in APB2ENR register  **************/
+#define GPIOA_ENABLE            0x4     // bit 2
+#define GPIOB_ENABLE            0x8     // bit 3
+// #define GPIOC_ENABLE            0x10    // bit 4
+// #define GPIOD_ENABLE            0x20    // bit 5
+// #define GPIOE_ENABLE            0x40    // bit 6
+// #define GPIOF_ENABLE            0x80    // bit 7
+// #define GPIOG_ENABLE            0x100   // bit 8
+
+/**************  Configuration and Mode in CRL and CRH register  **************/
 // Input mode and it's configuration
-#define MODE_Input      0b00    // This bit is the reset state of Mc
+#define MODE_Input              0b00    // This bit is the reset state of Mc
 
-#define CNF_Analog      0b00
-#define CNF_Floating    0b01
-#define CNF_Input_Pull  0b10    // If Pull up is set up, a bit of ODR correspond to the pin need to be configured
+#define CNF_Analog              0b00
+#define CNF_Floating            0b01
+#define CNF_Input_Pull          0b10    // If Pull up is set up, a bit of ODR correspond to the pin need to be configured
 
 // Output mode configuration
-#define MODE_Output_10MHz   0b01
-#define MODE_Output_2MHz    0b10
-#define MODE_Output_50MHz   0b11
+#define MODE_Output_10MHz       0b01
+#define MODE_Output_2MHz        0b10
+#define MODE_Output_50MHz       0b11
 
-#define CNF_GP_PUSH_PULL    0b00    // setup with ODR, but we can ignore it
-#define CNF_GP_OPEN_DRAIN   0b01    // setup with ODR, but we can ignore it
-#define CNF_AF_PUSH_PULL    0b10
-#define CNF_AF_OPEN_DRAIN   0b11
+#define CNF_GP_PUSH_PULL        0b00    // setup with ODR, but we can ignore it
+#define CNF_GP_OPEN_DRAIN       0b01    // setup with ODR, but we can ignore it
+#define CNF_AF_PUSH_PULL        0b10
+#define CNF_AF_OPEN_DRAIN       0b11
+
+/******************************************************************************/
+/*                                                                            */
+/*                               Timer register                               */
+/*                                                                            */
+/******************************************************************************/
+
+/***************  Bit Relative position of APB1ENR register  ******************/
+#define TIM2_ENABLE             0x01      // Bit 0 of the APB1ENR register
+
+
+/***************  Bit Relative position of APB2ENR register  ******************/
+#define TIM1_ENABLE             0x400     // Bit 11 of the APB2ENR register
+
+/*************************** Time-based unit register **************************/
+#define RESET_TIM_CNT           0x0000U   // reset value of Counter register
+#define RESET_TIM_PSC           0x0000U   // reset value of Prescaler register
+#define RESET_TIM_ARR           0xFFFFU   // reset value of Auto-Reload register
+
+/****************** Bit configuration of Control register 1 (CR1) *****************/
+#define CR_COUNT_ENR            0x1       // bit 0 relative to this register
+#define CR_DIR                  0x8       // bit 4 relative to this register
+
+/************ Bit configuration of Slave Mode Control register (SMCR) *************/
+#define SMCR_RESET              0x0000U   // reset register
+
+// Slave mode selection in SMCR register (bit [2:0])
+#define SMS_RESET               0x7       // Reset bits
+
+#define SMS_DISABLE             0x0       // Slave mode disabled
+// #define SMS_ENCODER1            0x1       // Encoder mode 1
+// #define SMS_ENCODER2            0x2       // Encoder mode 2
+// #define SMS_ENCODER3            0x3       // Encoder mode 3
+// #define SMS_RESET               0x4       // Reset mode
+// #define SMS_GATED               0x5       // Gated mode
+// #define SMS_TRIGGER             0x6       // Trigger mode
+#define SMS_EXT_CLOCK           0x7       // External Clock mode
+
+// Trigger Selection (bit [6:4])
+#define TS_RESET                0x7       // Reset bits
+
+// #define TS_INT_TR0              0x0       // Internal Trigger 0
+// #define TS_INT_TR1              0x1       // Internal Trigger 1
+// #define TS_INT_TR2              0x2       // Internal Trigger 2
+// #define TS_INT_TR3              0x3       // Internal Trigger 3
+// #define TS_TI1_EDGE_DETECOR     0x4       // TI1 Edge Detector
+// #define TS_FILT_TIM_INPUT1      0x5       // Filtered Timer Input 1
+// #define TS_FILT_TIM_INPUT2      0x6       // Filtered Timer Input 2
+#define TS_EXTER_TRIG           0x7       // External Trigger input
+
+/************** Bit configuration of Interrupt Enable register (DIER) *************/
+#define DIER_UP_ENR             0x1       // bit 0 relative to this register
+
+/**************** capture/compare mode register 1 (or 2) (CCMRx) ******************/
+#define CCMR_RESET              0x0000    // reset the register
+#define CCMR_OCM_MODE_1         0x6       // Mode 1 for PWM (''''|....)
+#define CCMR_OCM_MODE_2         0x7       // Mode 2 for PWM (....|'''')
+
+/******************* capture/compare enable register (CCERx) **********************/
+#define CCER_RESET              0xFFFF    // reset the register
+#define CCER_CH1_ENR            0x1       // Enable for Channel 1
+#define CCER_CH2_ENR            0x10      // Enable for Channel 2
+#define CCER_CH3_ENR            0x100     // Enable for Channel 3
+#define CCER_CH4_ENR            0x1000    // Enable for Channel 4
+
+
+/******************************************************************************/
+/*                                                                            */
+/*                    Nested vectored interrupt controller                    */
+/*                                                                            */
+/******************************************************************************/
+
+/********************* Interrupt and exception vectors (ISER) **********************/
+#define ISER_TIM1_UP_ENR        0x19      // bit 25 of the register ISER[0]
+#define ISER_TIM2_GLOBAL_ENR    0x1C      // bit 28 of the register ISER[0]
+
+/***********************************************************************************/
 
 #endif //VAL_H

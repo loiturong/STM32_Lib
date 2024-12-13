@@ -20,7 +20,7 @@
  * @param mode The mode setting for the GPIO pin. It is a 2-bit value determining
  *             the pin I/O mode (e.g., input, output at specific speed).
  */
-void GPIOA_Setup(int pin,int mode, int cnf)
+void GPIOA_Setup(int pin, int mode, int cnf)
 {
     RCC->APB2ENR |= GPIOA_ENABLE;
     if (pin < 8)

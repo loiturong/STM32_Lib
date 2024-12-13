@@ -26,6 +26,13 @@
 extern "C" {
 #endif
 
+/* User defined Clock ----------------------------------------------------------*/
+/* USER CODE BEGIN UC */
+// #define HSI_VALUE 16000000U  // Internal Clock Source
+// #define HSE_VALUE 8000000U  // External Clock Source
+
+/* USER CODE END UC */
+
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
