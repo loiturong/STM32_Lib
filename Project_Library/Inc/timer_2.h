@@ -6,7 +6,7 @@
 #define TIMER_2_H
 
 /***************  Bit Relative position of APB1ENR register  ******************/
-#define TIM2_ENABLE             0x01      // Bit 0 of the APB1ENR register
+#define TIM2_APB1ENR_ENABLE     0x1      // Bit 0 of the APB1ENR register
 
 /********************* Interrupt and exception vectors (ISER) **********************/
 #define ISER_TIM2_GLOBAL_ENR    0x1C      // bit 28 of the register ISER[0]

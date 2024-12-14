@@ -12,7 +12,7 @@
 void TIM2_Internal_Setup(int period_ms)
 {
     // Enable Clock for Timer
-    RCC->APB1ENR |= TIM2_ENABLE;
+    RCC->APB1ENR |= TIM2_APB1ENR_ENABLE;
     // Set Prescaler and Auto-Reload for timer
     int* temp_ = compute_value(period_ms, HSI_VALUE);
     TIM2->ARR = temp_[0];
@@ -24,7 +24,7 @@ void TIM2_Internal_Setup(int period_ms)
 void TIM2_External_Setup(int period_ms)
 {
     // Enable Clock for Timer
-    RCC->APB1ENR |= TIM2_ENABLE;
+    RCC->APB1ENR |= TIM2_APB1ENR_ENABLE;
     // enable slave mode External clock mode
     TIM2->SMCR &= ~(SMS_RESET);
     TIM2->SMCR |= SMS_EXT_CLOCK;
@@ -53,23 +53,13 @@ void TIM2_PWM_Channel1_Setup(int period_ms, float duty_cycle)
     // Enable Clock for pinout
     GPIOA_Setup(0, MODE_Output_10MHz, CNF_AF_PUSH_PULL);
 
-    // Enable Clock for Timer
-    RCC->APB1ENR |= TIM2_ENABLE;
+    // Setup timer 2
+    TIM2_Internal_Setup(period_ms);
 
-    // Set Prescaler and Auto-Reload for timer
-    int* temp_ = compute_value(period_ms, HSI_VALUE);
-    TIM2->ARR = temp_[0];
-    TIM2->PSC = temp_[1];
-    free(temp_); // free memory
-
-    // setup Pulse width
+    // Setup Pulse width for channel 1
     TIM2->CCR1 = (int)(TIM2->ARR * duty_cycle);
     TIM2->CCMR1 |= (CCMR_OCM_MODE_2 << 4); // mode (....|'''')
 
     // Enable output compare for Channel 1
-    // TIM2->CCER &= ~(CCER_RESET);
     TIM2->CCER |= CCER_CH1_ENR;
-
-    // Enable auto-reload preload
-    TIM2->CR1 |= CR_COUNT_ENR;
 }

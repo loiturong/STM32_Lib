@@ -53,10 +53,10 @@ void TIM4_PWM_Channel1_Setup(int period_ms, float duty_cycle)
     // Enable Clock for PB6 pin
     GPIOB_Setup(6, MODE_Output_10MHz, CNF_AF_PUSH_PULL);
 
-    // setup timer 4
+    // Setup timer 4
     TIM4_Internal_Setup(period_ms);
 
-    // setup Pulse width for channel 1
+    // Setup Pulse width for channel 1
     TIM4->CCR1 = (int)(TIM4->ARR * duty_cycle);
     TIM4->CCMR1 |= (CCMR_OCM_MODE_2 << 4); // mode (....|'''')
 

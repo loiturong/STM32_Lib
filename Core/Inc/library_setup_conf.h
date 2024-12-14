@@ -17,7 +17,7 @@
 
 // Timer
 // #define TIM1_ENABLE
-// #define TIM2_ENABLE
+#define TIM2_ENABLE
 // #define TIM3_ENABLE
 #define TIM4_ENABLE
 
