@@ -2,9 +2,9 @@
 // Created by loitr on 12/11/2024.
 //
 #include "stm32f1xx.h"
-#include "address.h"
 
-#include "gpio.h"
+#include "gpio_a.h"
+#include "gpio_b.h"
 
 
 /**
@@ -22,11 +22,17 @@
  */
 void GPIOA_Setup(int pin, int mode, int cnf)
 {
-    RCC->APB2ENR |= GPIOA_ENABLE;
+    RCC->APB2ENR |= GPIOA_APB2_ENABLE;
     if (pin < 8)
+    {
+        GPIOA->CRL &= ~(GPIO_RESET_MODE << (pin * 4));
         GPIOA->CRL |= (((cnf << 2) | mode) << pin * 4);
+    }
     else
+    {
+        GPIOA->CRH &= ~(GPIO_RESET_MODE << ((pin - 8) * 4));
         GPIOA->CRH |= (((cnf << 2) | mode) << (pin - 8) * 4);
+    }
 }
 
 /**
@@ -65,11 +71,17 @@ void GPIOA_Pull_Setup(int pin, int pull_up)
  */
 void GPIOB_Setup(int pin, int mode, int cnf)
 {
-    RCC->APB2ENR |= GPIOB_ENABLE;
+    RCC->APB2ENR |= GPIOB_APB2_ENABLE;
     if (pin < 8)
+    {
+        GPIOB->CRL &= ~(GPIO_RESET_MODE << (pin * 4));
         GPIOB->CRL |= (((cnf << 2) | mode) << pin * 4);
+    }
     else
+    {
+        GPIOB->CRH &= ~(GPIO_RESET_MODE << ((pin - 8) * 4));
         GPIOB->CRH |= (((cnf << 2) | mode) << (pin - 8) * 4);
+    }
 }
 
 /**

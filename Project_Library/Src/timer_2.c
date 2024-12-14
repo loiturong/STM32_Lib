@@ -2,12 +2,12 @@
 // Created by loitr on 12/13/2024.
 //
 
-#include "address.h"
 #include "stm32f1xx.h"
 #include "timer.h"
-#include <stdlib.h>
+#include "timer_2.h"
+#include "gpio_a.h"
 
-#include "gpio.h"
+#include <stdlib.h>
 
 void TIM2_Internal_Setup(int period_ms)
 {
@@ -50,16 +50,18 @@ void TIM2_Activate(void)
 
 void TIM2_PWM_Channel1_Setup(int period_ms, float duty_cycle)
 {
+    // Enable Clock for pinout
+    GPIOA_Setup(0, MODE_Output_10MHz, CNF_AF_PUSH_PULL);
+
     // Enable Clock for Timer
     RCC->APB1ENR |= TIM2_ENABLE;
-    // Enable Clock for pinout
-    GPIOB_Setup(6, MODE_Output_10MHz, CNF_AF_PUSH_PULL);
 
     // Set Prescaler and Auto-Reload for timer
     int* temp_ = compute_value(period_ms, HSI_VALUE);
     TIM2->ARR = temp_[0];
     TIM2->PSC = temp_[1];
     free(temp_); // free memory
+
     // setup Pulse width
     TIM2->CCR1 = (int)(TIM2->ARR * duty_cycle);
     TIM2->CCMR1 |= (CCMR_OCM_MODE_2 << 4); // mode (....|'''')

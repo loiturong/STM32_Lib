@@ -39,7 +39,9 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 // library
-#include "functional_calls.h"
+#include "library_setup_conf.h"
+
+#include "library_setup.h"
 
 /* USER CODE END Includes */
 

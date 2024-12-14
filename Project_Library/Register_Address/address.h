@@ -25,31 +25,14 @@
 /******************************************************************************/
 
 /**************  Bit relative configuration in APB2ENR register  **************/
-#define GPIOA_ENABLE            0x4     // bit 2
-#define GPIOB_ENABLE            0x8     // bit 3
+#define GPIOA_APB2_ENABLE            0x4     // bit 2
+#define GPIOB_APB2_ENABLE            0x8     // bit 3
 // #define GPIOC_ENABLE            0x10    // bit 4
 // #define GPIOD_ENABLE            0x20    // bit 5
 // #define GPIOE_ENABLE            0x40    // bit 6
 // #define GPIOF_ENABLE            0x80    // bit 7
 // #define GPIOG_ENABLE            0x100   // bit 8
 
-/**************  Configuration and Mode in CRL and CRH register  **************/
-// Input mode and it's configuration
-#define MODE_Input              0b00    // This bit is the reset state of Mc
-
-#define CNF_Analog              0b00
-#define CNF_Floating            0b01
-#define CNF_Input_Pull          0b10    // If Pull up is set up, a bit of ODR correspond to the pin need to be configured
-
-// Output mode configuration
-#define MODE_Output_10MHz       0b01
-#define MODE_Output_2MHz        0b10
-#define MODE_Output_50MHz       0b11
-
-#define CNF_GP_PUSH_PULL        0b00    // setup with ODR, but we can ignore it
-#define CNF_GP_OPEN_DRAIN       0b01    // setup with ODR, but we can ignore it
-#define CNF_AF_PUSH_PULL        0b10
-#define CNF_AF_OPEN_DRAIN       0b11
 
 /******************************************************************************/
 /*                                                                            */
@@ -59,7 +42,8 @@
 
 /***************  Bit Relative position of APB1ENR register  ******************/
 #define TIM2_ENABLE             0x01      // Bit 0 of the APB1ENR register
-
+#define TIM3_ENABLE             0x02      // Bit 1 of the APB1ENR register
+#define TIM4_ENABLE             0x04      // Bit 2 of the APB1ENR register
 
 /***************  Bit Relative position of APB2ENR register  ******************/
 #define TIM1_ENABLE             0x400     // Bit 11 of the APB2ENR register
@@ -125,6 +109,8 @@
 /********************* Interrupt and exception vectors (ISER) **********************/
 #define ISER_TIM1_UP_ENR        0x19      // bit 25 of the register ISER[0]
 #define ISER_TIM2_GLOBAL_ENR    0x1C      // bit 28 of the register ISER[0]
+#define ISER_TIM3_GLOBAL_ENR    0x1D      // bit 29 of the register ISER[0]
+#define ISER_TIM4_GLOBAL_ENR    0x1E      // bit 30 of the register ISER[0]
 
 /***********************************************************************************/
 
