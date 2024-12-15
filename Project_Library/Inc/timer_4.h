@@ -29,4 +29,8 @@ void TIM4_PWM_Channel2_Setup(int period_ms, float duty_cycle);
 void TIM4_PWM_Channel3_Setup(int period_ms, float duty_cycle);
 void TIM4_PWM_Channel4_Setup(int period_ms, float duty_cycle);
 
+/*** Counter mode setup ***/
+void TIM4_Counter_Setup(void);
+
+
 #endif //TIMER_4_H

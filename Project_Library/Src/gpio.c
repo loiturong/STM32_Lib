@@ -50,9 +50,9 @@ void GPIOA_Pull_Setup(int pin, int pull_up)
 {
     GPIOA_Setup(pin, MODE_Input, CNF_Input_Pull);
     if (pull_up)
-        GPIOA->ODR |= (pull_up << pin);
+        GPIOA->ODR |= (0x1 << pin);
     else
-        GPIOA->ODR &= ~(pull_up << pin);
+        GPIOA->ODR &= ~(0x1 << pin);
 }
 
 /**
@@ -99,7 +99,7 @@ void GPIOB_Pull_Setup(int pin, int pull_up)
 {
     GPIOB_Setup(pin, MODE_Input, CNF_Input_Pull);
     if (pull_up)
-        GPIOB->ODR |= (1 << pin);
+        GPIOB->ODR |= (0x1 << pin);
     else
-        GPIOB->ODR &= ~(1 << pin);
+        GPIOB->ODR &= ~(0x1 << pin);
 }

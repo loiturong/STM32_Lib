@@ -14,7 +14,7 @@ void TIM2_Internal_Setup(int period_ms)
     // Enable Clock for Timer
     RCC->APB1ENR |= TIM2_APB1ENR_ENABLE;
     // Set Prescaler and Auto-Reload for timer
-    int* temp_ = compute_value(period_ms, HSI_VALUE);
+    int* temp_ = find_timer_configuration(period_ms, HSI_VALUE);
     TIM2->ARR = temp_[0];
     TIM2->PSC = temp_[1];
     free(temp_); // free memory
@@ -33,7 +33,7 @@ void TIM2_External_Setup(int period_ms)
     TIM2->SMCR |= TS_EXTER_TRIG;
 
     // Set Prescaler and Auto-Reload for timer
-    int* temp_ = compute_value(period_ms, HSE_VALUE);
+    int* temp_ = find_timer_configuration(period_ms, HSE_VALUE);
     TIM2->ARR = temp_[0];
     TIM2->PSC = temp_[1];
     free(temp_); // free memory

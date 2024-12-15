@@ -22,6 +22,6 @@
 #define TIM4_ENABLE
 
 /*** Configuration for Functional calling functions ***/
-// Not have yet
+// Not yet built
 
 #endif //FUNCTIONAL_CALLS_H

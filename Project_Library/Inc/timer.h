@@ -6,6 +6,6 @@
 #define TIMER_H
 
 // Helping function
-int *compute_value(int period_ms, int frequency);
+int *find_timer_configuration(int period_ms, int frequency);
 
 #endif //TIMER_H

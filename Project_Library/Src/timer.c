@@ -23,7 +23,7 @@
  */
 #define MAX_TIMER_VALUE 65536
 
-int *compute_value(int period_ms, int frequency)
+int *find_timer_configuration(int period_ms, int frequency)
 {
     // Avoid floating-point operations
     long long int time_frequency = (long long int)period_ms * frequency / 1000;
