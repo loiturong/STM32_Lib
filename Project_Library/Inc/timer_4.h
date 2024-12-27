@@ -17,8 +17,7 @@
 
 /*** Timer mode setup ***/
 
-void TIM4_Internal_Setup(int period_ms);
-void TIM4_External_Setup(int period_ms);
+void TIM4_Setup(int period_ms);
 void TIM4_Activate(void);
 void TIM4_Deactivate(void);
 
@@ -30,7 +29,7 @@ void TIM4_PWM_Channel3_Setup(int period_ms, float duty_cycle);
 void TIM4_PWM_Channel4_Setup(int period_ms, float duty_cycle);
 
 /*** Counter mode setup ***/
-void TIM4_Counter_Setup(void);
+void TIM4_Counter_Setup(int counts);
 
 
 #endif //TIMER_4_H

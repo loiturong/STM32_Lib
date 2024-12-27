@@ -17,6 +17,9 @@
 /************ Bit configuration of Slave Mode Control register (SMCR) *************/
 #define SMCR_RESET              0x0000U   // reset register
 
+// External clock enable bit
+#define SMCR_ECE                1<<14     // bit 14
+
 // Slave mode selection in SMCR register (bit [2:0])
 #define SMS_RESET               0x7       // Reset bits
 

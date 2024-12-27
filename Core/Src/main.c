@@ -86,9 +86,10 @@ int main(void)
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
   TIM4_PWM_Channel1_Setup(9, 0.9);
-  TIM4_PWM_Channel2_Setup(9, 0.8);
-  TIM4_PWM_Channel3_Setup(9, 0.7);
-  TIM4_PWM_Channel4_Setup(9, 0.6);
+  // TIM4_PWM_Channel2_Setup(9, 0.8);
+  // TIM4_PWM_Channel3_Setup(9, 0.7);
+  // TIM4_PWM_Channel4_Setup(9, 0.6);
+
 
   /* USER CODE END 2 */
 
