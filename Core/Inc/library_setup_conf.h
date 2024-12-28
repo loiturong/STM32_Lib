@@ -9,19 +9,25 @@
 /*** Configuration for setup functions ***/
 
 // general purpose and alternative function
-#define GPIOA_ENABLE
-#define GPIOB_ENABLE
-// #define GPIOC_ENABLE
-// #define GPIOD_ENABLE
-// #define GPIOE_ENABLE
+#define GPIO_ENABLE
 
 // Timer
-// #define TIM1_ENABLE
-#define TIM2_ENABLE
-// #define TIM3_ENABLE
-#define TIM4_ENABLE
+// #define TIMER_ENABLE
 
 /*** Configuration for Functional calling functions ***/
 // Not yet built
+
+
+/*** GPIO setup function ***/
+
+#ifdef GPIO_ENABLE
+    #include "gpio.h"
+#endif
+
+/*** TIMER setup function ***/
+
+#ifdef TIMER_ENABLE
+#include "timer.h"
+#endif
 
 #endif //FUNCTIONAL_CALLS_H

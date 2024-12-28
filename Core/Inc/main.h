@@ -41,8 +41,6 @@ extern "C" {
 // library
 #include "library_setup_conf.h"
 
-#include "library_setup.h"
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

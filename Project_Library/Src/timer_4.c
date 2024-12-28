@@ -3,8 +3,7 @@
 //
 #include "stm32f1xx.h"
 #include "timer.h"
-#include "timer_4.h"
-#include "gpio_b.h"
+#include "gpio.h"
 
 #include <stdlib.h>
 

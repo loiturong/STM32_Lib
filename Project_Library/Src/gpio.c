@@ -3,8 +3,7 @@
 //
 #include "stm32f1xx.h"
 
-#include "gpio_a.h"
-#include "gpio_b.h"
+#include "gpio.h"
 
 
 /**
